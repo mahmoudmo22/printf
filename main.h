@@ -19,4 +19,4 @@ int _printf(const char *format, ...);
 
 
 
-#endif //_PRINTF_H
+#endif
