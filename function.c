@@ -1,5 +1,3 @@
-#include <unistd.h>
-#include <stdarg.h>
 #include "main.h"
 
 /**
@@ -23,7 +21,6 @@ void print_number(int n)
 
 	digit = (n % 10) + '0';
 	write(1, &digit, 1);
-	
 }
 
 /**
