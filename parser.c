@@ -18,29 +18,21 @@ void append_out_buffer(char character, void *buffer, size_t idx, size_t maxlen)
  * @indx: index to append to
  * @maxlen: max length of the buffer
  * @args: list of args
- * Return: 1 or -1 depends on the case
 */
-int append_string(char *buffer, va_list args, size_t *indx, size_t maxlen)
+void append_string(char *buffer, va_list args, size_t *indx, size_t maxlen)
 {
-	int found_null;
 	char *str;
 
 	str = va_arg(args, char*);
-	found_null = 0;
 	if (str == NULL)
 	{
 		str = "(null)";
-		found_null = 1;
 	}
 	while (*str)
 	{
 		append_out_buffer(*str, buffer, (*indx)++, maxlen);
 		str++;
 	}
-	if (found_null)
-		return (-1);
-	else
-		return (1);
 }
 /**
  * parser - Receives the main string and all the necessary parameters to
@@ -55,7 +47,6 @@ int append_string(char *buffer, va_list args, size_t *indx, size_t maxlen)
 int parser(const char *format, char *buffer, size_t maxlength,
 		va_list args, size_t indx)
 {
-	int n;
 
 	while (*format)
 	{
@@ -75,9 +66,7 @@ int parser(const char *format, char *buffer, size_t maxlength,
 			format++;
 			break;
 		case 's':
-			n = append_string(buffer, args, &indx, maxlength);
-			if (n == -1)
-				return (n);
+			append_string(buffer, args, &indx, maxlength);
 			format++;
 			break;
 		case '%':
