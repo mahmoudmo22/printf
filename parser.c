@@ -31,7 +31,6 @@ int parser(const char *format, char *buffer, size_t maxlength,
 	{
 		if (*format != '%')
 		{
-			/* append cahracter to buffer and append it  */
 			append_out_buffer(*format, buffer, indx++, maxlength);
 			format++;
 			continue;
@@ -48,7 +47,7 @@ int parser(const char *format, char *buffer, size_t maxlength,
 		case 's':
 			str = va_arg(args, char*);
 			if (str == NULL)
-				str = "(null)";
+				return (-1);
 			while (*str)
 			{
 				append_out_buffer(*str, buffer, indx++, maxlength);
