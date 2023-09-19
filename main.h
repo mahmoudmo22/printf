@@ -11,7 +11,6 @@
  * @buffer: A list of all the posible functions
  * @maxlength: max length of buffer
  * @args: A list containing all the argumentents passed to the program.
- * @str: string only
  * @indx: size of buffer
  * Return: int number of printed
  */
