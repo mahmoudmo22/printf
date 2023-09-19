@@ -11,7 +11,6 @@ int _printf(const char *format, ...)
 	va_list args;
 	size_t indx, maxlength;
 	char buffer[BUFF_SIZE];
-	char *str = NULL;
 
 	indx = 0;
 	maxlength = BUFF_SIZE;
