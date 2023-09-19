@@ -1,4 +1,4 @@
-#include "printf.h"
+#include "main.h"
 
 /**
  * print_number - Helper function to print an integer
@@ -30,7 +30,7 @@ void print_number(int n)
  *
  * Return: The number of characters printed
  */
-int _printf(const char *format, ...)
+int num_printf(const char *format, ...)
 {
 	va_list args;
 	int num;
