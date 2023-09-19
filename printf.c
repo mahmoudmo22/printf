@@ -1,5 +1,5 @@
 #include "main.h"
-#define BUFF_SIZE 1024U
+#define BUFF_SIZE 1024
 
 /**
  * _printf - print a formatted strign to std out
@@ -9,7 +9,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int indx, maxlength;
+	size_t indx, maxlength;
 	char buffer[BUFF_SIZE];
 	char *str = NULL;
 
@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(args, format);
-	indx = parser(format, buffer, maxlength, args, str, indx);
+	indx = parser(format, buffer, maxlength, args, indx);
 	va_end(args);
 	write(1, buffer, indx);
 	return (indx);

@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * append_out_buffer - append a character to out buffer
  * @character: character to be appened
@@ -13,6 +12,28 @@ void append_out_buffer(char character, void *buffer, size_t idx, size_t maxlen)
 		((char *)buffer)[idx] = character;
 }
 
+int append_string(char *buffer, va_list args, size_t *indx, size_t maxlen)
+{
+	int found_null;
+	char *str;
+	str = va_arg(args, char*);
+
+	found_null = 0;
+	if (str == NULL)
+	{
+		str = "(null)";
+		found_null = 1;
+	}
+	while (*str)
+	{
+		append_out_buffer(*str, buffer, (*indx)++, maxlen);
+		str++;
+	}
+	if (found_null)
+		return (-1);
+	else
+		return (1);
+}
 /**
  * parser - Receives the main string and all the necessary parameters to
  * print a formated string.
@@ -25,8 +46,9 @@ void append_out_buffer(char character, void *buffer, size_t idx, size_t maxlen)
  * Return: int number of printed
  */
 int parser(const char *format, char *buffer, size_t maxlength,
-		va_list args, char *str, int indx)
+		va_list args, size_t indx)
 {
+	int n;
 	while (*format)
 	{
 		if (*format != '%')
@@ -45,14 +67,9 @@ int parser(const char *format, char *buffer, size_t maxlength,
 			format++;
 			break;
 		case 's':
-			str = va_arg(args, char*);
-			if (str == NULL)
-				return (-1);
-			while (*str)
-			{
-				append_out_buffer(*str, buffer, indx++, maxlength);
-				str++;
-			}
+			n = append_string(buffer, args, &indx, maxlength);
+			if (n == -1)
+				return n;
 			format++;
 			break;
 		case '%':

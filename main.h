@@ -16,7 +16,7 @@
  * Return: int number of printed
  */
 int parser(const char *format, char *buffer, size_t maxlength,
-		va_list args, char *str, int indx);
+		va_list args, size_t indx);
 /**
  * _printf - print a formatted strign to std out
  *@format: format string to be parsed
