@@ -24,7 +24,7 @@ void print_number(int n)
 }
 
 /**
- * _printf - Custom printf function
+ * num_printf - Custom printf function
  * @format: The format string
  * @...: The variable number of arguments
  *
@@ -37,9 +37,6 @@ int num_printf(const char *format, ...)
 	int printed_chars = 0;
 
 	va_start(args, format);
-
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
 
 	while (*format)
 	{
